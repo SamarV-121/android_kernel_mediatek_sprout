@@ -43,9 +43,9 @@ compile_kernel ()
 echo -e "$White***********************************************"
 echo "        Compiling ElectraBlue Kernel           "
 echo -e "***********************************************$nocol"
-make clean && make mrproper
+#make clean && make mrproper
 make cyanogenmod_sprout_defconfig
-make -j2
+make -j4
 if ! [ -a $ZIMAGE ];
 then
 echo -e "$Red Kernel Compilation failed! Please Fix the errors! $nocol"
