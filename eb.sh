@@ -78,7 +78,7 @@ echo -e "$Green Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60))
 fi
 echo "Extracting files..."
 if [ -f arch/arm/boot/"$kerneltype" ]; then
-	cp arch/arm/boot/"$kerneltype" "$zip"/"$kerneltype"
+	cp arch/arm/boot/"$kerneltype" "$zip"/tools/"$kerneltype"
 else
 	echo "Nothing has been made..."
 	read -p "Clean working directory..(y/n)? : " achoice
@@ -108,11 +108,11 @@ else
 fi
 
 echo "Zipping..."
-if [ -f "$zip"/"$kerneltype" ]; then
+if [ -f "$zip"/tools/"$kerneltype" ]; then
 	cd "$zip"
 	zip -r ../$zip_name .
 	mv ../$zip_name $build
-	rm "$kerneltype"
+	rm tools/"$kerneltype"
 	cd ..
 	rm -rf arch/arm/boot/"$kerneltype"
 	export outdir=""$build""
