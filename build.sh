@@ -33,15 +33,15 @@ nocol='\033[0m'         # Default
 # Exports
 export ARCH=arm
 export SUBARCH=arm
-export KBUILD_BUILD_USER="LordArcadius"
-export KBUILD_BUILD_HOST="DroidBox"
-export CROSS_COMPILE=/home/lordarcadius/arm-linaro-linux-androideabi/bin/arm-linaro-linux-androideabi-
+export KBUILD_BUILD_USER="SamarV-121"
+export KBUILD_BUILD_HOST="Speedhorn"
+export CROSS_COMPILE=$PWD/arm-linaro-linux-androideabi/bin/arm-linaro-linux-androideabi-
 
 # Compilation Scripts
 compile_kernel ()
 {
 echo -e "$White***********************************************"
-echo "        Compiling ElectraBlue Kernel           "
+echo "                  Compiling Fuse Kernel                 "
 echo -e "***********************************************$nocol"
 #make clean && make mrproper
 make cyanogenmod_sprout_defconfig
