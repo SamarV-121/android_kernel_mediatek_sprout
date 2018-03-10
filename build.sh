@@ -35,7 +35,7 @@ export ARCH=arm
 export SUBARCH=arm
 export KBUILD_BUILD_USER="SamarV-121"
 export KBUILD_BUILD_HOST="Speedhorn"
-export CROSS_COMPILE=$PWD/arm-linaro-linux-androideabi/bin/arm-linaro-linux-androideabi-
+export CROSS_COMPILE=$PWD/linaro-7.2/bin/arm-linaro-linux-androideabi-
 
 # Compilation Scripts
 compile_kernel ()
