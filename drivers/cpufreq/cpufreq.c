@@ -1607,8 +1607,6 @@ EXPORT_SYMBOL_GPL(__cpufreq_driver_getavg);
  * when "event" is CPUFREQ_GOV_LIMITS
  */
 
-EXPORT_SYMBOL_GPL(__cpufreq_driver_getavg);
-
 static int __cpufreq_governor(struct cpufreq_policy *policy,
 					unsigned int event)
 {
