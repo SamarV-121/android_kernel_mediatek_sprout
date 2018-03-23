@@ -1,0 +1,25 @@
+
+sudo: required
+
+before_install:
+- sudo apt-get install zip
+- sudo apt install ccache
+- sudo apt install liblz4-tool
+- git clone --recursive https://github.com/SamarV-121/fuse_kernel_google_sprout ~/kernel
+script:
+- cd ~/kernel
+- chmod a+x ~/kernel/linaro-7.2
+- chmod a+x ~/kernel/linaro-7.2/bin
+- sudo chmod -R 755 ~/kernel
+- export KBUILD_BUILD_USER="SamarV-121"
+- export KBUILD_BUILD_HOST="Speedhorn"
+- export ARCH=arm
+- export CROSS_COMPILE=~/kernel/linaro-7.2/bin/arm-linaro-linux-androideabi-
+- mkdir -p out
+- make O=out sprout_defconfig
+- make O=out -j128
+- mv ~/kernel/out/arch/arm/boot/zImage ~/kernel/zip
+- cd ~/kernel/zip
+- zip -r Fuse-Kernel-sprout.zip *
+- curl --upload-file ./Fuse-Kernel-sprout.zip https://transfer.sh/Fuse-Kernel-sprout.zip
+
