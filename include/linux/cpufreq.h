@@ -218,6 +218,8 @@ extern int __cpufreq_driver_target(struct cpufreq_policy *policy,
 extern int __cpufreq_driver_getavg(struct cpufreq_policy *policy,
 				   unsigned int cpu);
 
+extern int __cpufreq_driver_getavg(struct cpufreq_policy *policy, unsigned int cpu);
+				   
 int cpufreq_register_governor(struct cpufreq_governor *governor);
 void cpufreq_unregister_governor(struct cpufreq_governor *governor);
 
@@ -261,7 +263,7 @@ struct cpufreq_driver {
 				 unsigned int cpu);
 	int	(*bios_limit)	(int cpu, unsigned int *limit);
 
-	unsigned int (*getavg) (struct cpufreq_policy *policy, unsigned int cpu);
+    unsigned int (*getavg) (struct cpufreq_policy *policy, unsigned int cpu);	
 	int	(*exit)		(struct cpufreq_policy *policy);
 	int	(*suspend)	(struct cpufreq_policy *policy);
 	int	(*resume)	(struct cpufreq_policy *policy);
@@ -288,10 +290,9 @@ void cpufreq_notify_transition(struct cpufreq_policy *policy,
 void cpufreq_notify_utilization(struct cpufreq_policy *policy,
 		unsigned int load);
 
-static inline void cpufreq_verify_within_limits(struct cpufreq_policy *policy, unsigned int min, unsigned int max)
-
 void cpufreq_notify_utilization(struct cpufreq_policy *policy, unsigned int load);
-
+		
+static inline void cpufreq_verify_within_limits(struct cpufreq_policy *policy, unsigned int min, unsigned int max)
 {
 	if (policy->min < min)
 		policy->min = min;
@@ -384,53 +385,6 @@ static inline unsigned int cpufreq_quick_get_max(unsigned int cpu)
  *                       CPUFREQ DEFAULT GOVERNOR                    *
  *********************************************************************/
 
-<<<<<<< HEAD
-=======
-/*
- * If (cpufreq_driver->target) exists, the ->governor decides what frequency
- * within the limits is used. If (cpufreq_driver->setpolicy> exists, these
- * two generic policies are available:
- */
-#define CPUFREQ_POLICY_POWERSAVE	(1)
-#define CPUFREQ_POLICY_PERFORMANCE	(2)
-
-/* Governor Events */
-#define CPUFREQ_GOV_START	1
-#define CPUFREQ_GOV_STOP	2
-#define CPUFREQ_GOV_LIMITS	3
-#define CPUFREQ_GOV_POLICY_INIT	4
-#define CPUFREQ_GOV_POLICY_EXIT	5
-
-struct cpufreq_governor {
-	char	name[CPUFREQ_NAME_LEN];
-	int	initialized;
-	int	(*governor)	(struct cpufreq_policy *policy,
-				 unsigned int event);
-	ssize_t	(*show_setspeed)	(struct cpufreq_policy *policy,
-					 char *buf);
-	int	(*store_setspeed)	(struct cpufreq_policy *policy,
-					 unsigned int freq);
-	unsigned int max_transition_latency; /* HW must be able to switch to
-			next freq faster than this value in nano secs or we
-			will fallback to performance governor */
-	struct list_head	governor_list;
-	struct module		*owner;
-};
-
-/* Pass a target to the cpufreq driver */
-extern int cpufreq_driver_target(struct cpufreq_policy *policy,
-				 unsigned int target_freq,
-				 unsigned int relation);
-
-extern int __cpufreq_driver_target(struct cpufreq_policy *policy,
-				   unsigned int target_freq,
-				   unsigned int relation);
-
-extern int __cpufreq_driver_getavg(struct cpufreq_policy *policy, unsigned int cpu);
-
-int cpufreq_register_governor(struct cpufreq_governor *governor);
-
-void cpufreq_unregister_governor(struct cpufreq_governor *governor);
 
 /*
   Performance governor is fallback governor if any other gov failed to
