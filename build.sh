@@ -44,7 +44,7 @@ echo -e "$White***********************************************"
 echo "                  Compiling Fuse Kernel                 "
 echo -e "***********************************************$nocol"
 #make clean && make mrproper
-make cyanogenmod_sprout_defconfig
+make sprout_defconfig
 make -j4
 if ! [ -a $ZIMAGE ];
 then
