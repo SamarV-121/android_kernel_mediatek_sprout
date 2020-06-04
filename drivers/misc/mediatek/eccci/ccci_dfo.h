@@ -49,7 +49,7 @@ struct dfo_item {
 /* image name/path */
 #define MOEDM_IMAGE_NAME "modem.img"
 #define DSP_IMAGE_NAME "DSP_ROM"
-#define CONFIG_MODEM_FIRMWARE_PATH "/etc/firmware/"
+#define CONFIG_MODEM_FIRMWARE_PATH "/vendor/etc/firmware/"
 #define IMG_ERR_STR_LEN 64
 
 /* image header constants */
